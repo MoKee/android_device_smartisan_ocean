@@ -46,3 +46,4 @@ service light-hal-2-0 /system/bin/hw/android.hardware.light@2.0-service.ocean
     class hal
     user system
     group system
+    shutdown critical
