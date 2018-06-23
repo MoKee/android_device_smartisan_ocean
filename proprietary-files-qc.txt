@@ -114,6 +114,8 @@ vendor/lib/com.qualcomm.qti.bluetooth_audio@1.0_vendor.so|691317eef612bd7205b6df
 vendor/lib/hw/com.qualcomm.qti.bluetooth_audio@1.0-impl.so|e86f119d89422c2a57a193f5d78e6e54ebc9161f
 vendor/lib64/com.qualcomm.qti.bluetooth_audio@1.0_vendor.so|07d9f6cc297697f942837b35935f8e93af44731a
 vendor/lib64/hw/com.qualcomm.qti.bluetooth_audio@1.0-impl.so|2087924cf9f6ad02c894fe2d2fb8f1a3c91fe4cb
+vendor/lib64/libaptXHD_encoder.so|90f47f10af28b3ead143200cb4370b847c513127
+vendor/lib64/libaptX_encoder.so|0cebad28afcf29f931bdc2d24fce2730dc882ecf
 vendor/lib64/vendor.qti.hardware.fm@1.0_vendor.so|1446d0ba5e6286a16dd9d47706cc0d4d227aa77d
 
 # Charger
