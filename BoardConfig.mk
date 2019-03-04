@@ -64,6 +64,9 @@ BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 # Audio
 USE_XML_AUDIO_POLICY_CONF := 1
 
+# Bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
+
 # Camera
 TARGET_USES_QTI_CAMERA_DEVICE := true
 
@@ -75,6 +78,9 @@ TARGET_USES_HWC2 := true
 
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/config.fs
+
+# HIDL
+DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/manifest.xml
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
