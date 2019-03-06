@@ -43,6 +43,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libvulkan
 
+# Filesystem
+PRODUCT_PACKAGES += \
+    fs_config_files
+
 # HIDL
 PRODUCT_PACKAGES += \
     android.hidl.base@1.0 \
