@@ -40,29 +40,22 @@ public class KeyHandler implements DeviceKeyHandler {
 
     private static final String TAG = "KeyHandler";
 
-    private static final String FILE_SHORTCUTS = "/proc/keypad/shortcuts";
-    private static final String FILE_POWER = "/proc/keypad/power";
-
-    private static final String TRUSTED_SHORTCUTS_DEVICE_NAME = "gpio-keys";
-    private static final String TRUSTED_POWER_DEVICE_NAME = "qpnp_pon";
+    private static final int KEY_POWER = 0;
+    private static final int KEY_SHORTCUTS = 1;
 
     private final int longPressTimeout = ViewConfiguration.getLongPressTimeout();
+
+    private final KeyInfo[] keys = new KeyInfo[] {
+        new KeyInfo("power", "qpnp_pon"),
+        new KeyInfo("shortcuts", "gpio-keys"),
+    };
 
     private Context context;
     private PowerManager pm;
     private ScreenshotHelper screenshotHelper;
 
-    private int trustedShortcutsDeviceId = 0;
-    private int trustedPowerDeviceId = 0;
-
     private boolean shortcutsKeyPressed = false;
     private boolean powerKeyPressed = false;
-
-    private int shortcutsScanCode = 0;
-    private int shortcutsKeyCode = 0;
-
-    private int powerScanCode = 0;
-    private int powerKeyCode = 0;
 
     private Handler handler = new Handler(Looper.getMainLooper());
 
@@ -71,8 +64,8 @@ public class KeyHandler implements DeviceKeyHandler {
         public void run() {
             if (shortcutsKeyPressed && powerKeyPressed) {
                 takeScreenshot(true);
-                injectKey(shortcutsKeyCode, KeyEvent.ACTION_UP, KeyEvent.FLAG_CANCELED);
-                injectKey(powerKeyCode, KeyEvent.ACTION_UP, KeyEvent.FLAG_CANCELED);
+                injectKey(keys[KEY_SHORTCUTS].keyCode, KeyEvent.ACTION_UP, KeyEvent.FLAG_CANCELED);
+                injectKey(keys[KEY_POWER].keyCode, KeyEvent.ACTION_UP, KeyEvent.FLAG_CANCELED);
                 shortcutsKeyPressed = false;
                 powerKeyPressed = false;
             }
@@ -83,12 +76,6 @@ public class KeyHandler implements DeviceKeyHandler {
         this.context = context;
         this.pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         this.screenshotHelper = new ScreenshotHelper(context);
-
-        try {
-            shortcutsScanCode = Integer.parseInt(FileUtils.readOneLine(FILE_SHORTCUTS));
-            powerScanCode = Integer.parseInt(FileUtils.readOneLine(FILE_POWER));
-        } catch (NumberFormatException ignored) {
-        }
     }
 
     public KeyEvent handleKeyEvent(KeyEvent event) {
@@ -100,32 +87,19 @@ public class KeyHandler implements DeviceKeyHandler {
     }
 
     private boolean handleShortcutsKeyEvent(KeyEvent event) {
-        if (trustedShortcutsDeviceId == 0) {
-            final String deviceName = getDeviceName(event);
-            if (TRUSTED_SHORTCUTS_DEVICE_NAME.equals(deviceName)) {
-                trustedShortcutsDeviceId = event.getDeviceId();
-            } else {
-                return false;
-            }
-        } else {
-            if (trustedShortcutsDeviceId != event.getDeviceId()) {
-                return false;
-            }
-        }
+        final KeyInfo keyShortcuts = keys[KEY_SHORTCUTS];
 
-        if (event.getScanCode() == shortcutsScanCode) {
-            shortcutsKeyCode = event.getKeyCode();
-        } else {
+        if (!keyShortcuts.match(event)) {
             return false;
         }
 
         switch (event.getAction()) {
             case KeyEvent.ACTION_DOWN:
                 if (powerKeyPressed) {
-                    injectKey(powerKeyCode, KeyEvent.ACTION_UP, KeyEvent.FLAG_CANCELED);
+                    injectKey(keys[KEY_POWER].keyCode, KeyEvent.ACTION_UP, KeyEvent.FLAG_CANCELED);
                     handler.postDelayed(triggerPartialScreenshot, longPressTimeout);
                 } else {
-                    injectKey(shortcutsKeyCode, KeyEvent.ACTION_DOWN, 0);
+                    injectKey(keyShortcuts.keyCode, KeyEvent.ACTION_DOWN, 0);
                 }
                 if (pm.isInteractive()) {
                     shortcutsKeyPressed = true;
@@ -136,7 +110,7 @@ public class KeyHandler implements DeviceKeyHandler {
                     takeScreenshot(false);
                     powerKeyPressed = false;
                 } else {
-                    injectKey(shortcutsKeyCode, KeyEvent.ACTION_UP, 0);
+                    injectKey(keyShortcuts.keyCode, KeyEvent.ACTION_UP, 0);
                 }
                 handler.removeCallbacks(triggerPartialScreenshot);
                 shortcutsKeyPressed = false;
@@ -147,32 +121,19 @@ public class KeyHandler implements DeviceKeyHandler {
     }
 
     private boolean handlePowerKeyEvent(KeyEvent event) {
-        if (trustedPowerDeviceId == 0) {
-            final String deviceName = getDeviceName(event);
-            if (TRUSTED_POWER_DEVICE_NAME.equals(deviceName)) {
-                trustedPowerDeviceId = event.getDeviceId();
-            } else {
-                return false;
-            }
-        } else {
-            if (trustedPowerDeviceId != event.getDeviceId()) {
-                return false;
-            }
-        }
+        final KeyInfo keyPower = keys[KEY_POWER];
 
-        if (event.getScanCode() == powerScanCode) {
-            powerKeyCode = event.getKeyCode();
-        } else {
+        if (!keyPower.match(event)) {
             return false;
         }
 
         switch (event.getAction()) {
             case KeyEvent.ACTION_DOWN:
                 if (shortcutsKeyPressed) {
-                    injectKey(shortcutsKeyCode, KeyEvent.ACTION_UP, KeyEvent.FLAG_CANCELED);
+                    injectKey(keys[KEY_SHORTCUTS].keyCode, KeyEvent.ACTION_UP, KeyEvent.FLAG_CANCELED);
                     handler.postDelayed(triggerPartialScreenshot, longPressTimeout);
                 } else {
-                    injectKey(powerKeyCode, KeyEvent.ACTION_DOWN, 0);
+                    injectKey(keyPower.keyCode, KeyEvent.ACTION_DOWN, 0);
                 }
                 if (pm.isInteractive()) {
                     powerKeyPressed = true;
@@ -183,7 +144,7 @@ public class KeyHandler implements DeviceKeyHandler {
                     takeScreenshot(false);
                     shortcutsKeyPressed = false;
                 } else {
-                    injectKey(powerKeyCode, KeyEvent.ACTION_UP, 0);
+                    injectKey(keyPower.keyCode, KeyEvent.ACTION_UP, 0);
                 }
                 handler.removeCallbacks(triggerPartialScreenshot);
                 powerKeyPressed = false;
@@ -215,6 +176,51 @@ public class KeyHandler implements DeviceKeyHandler {
                 : WindowManager.TAKE_SCREENSHOT_FULLSCREEN;
 
         screenshotHelper.takeScreenshot(type, true, true, handler);
+    }
+
+    private class KeyInfo {
+
+        final String file;
+        final String deviceName;
+        final int scanCode;
+        int deviceId;
+        int keyCode;
+
+        KeyInfo(String file, String deviceName) {
+            int scanCode;
+            this.file = "/proc/keypad/" + file;
+            this.deviceName = deviceName;
+            try {
+                scanCode = Integer.parseInt(FileUtils.readOneLine(this.file));
+            } catch (NumberFormatException ignored) {
+                scanCode = 0;
+            }
+            this.scanCode = scanCode;
+        }
+
+        boolean match(KeyEvent event) {
+            if (deviceId == 0) {
+                final String deviceName = getDeviceName(event);
+                if (this.deviceName.equals(deviceName)) {
+                    deviceId = event.getDeviceId();
+                } else {
+                    return false;
+                }
+            } else {
+                if (deviceId != event.getDeviceId()) {
+                    return false;
+                }
+            }
+
+            if (event.getScanCode() == scanCode) {
+                keyCode = event.getKeyCode();
+            } else {
+                return false;
+            }
+
+            return true;
+        }
+
     }
 
 }
