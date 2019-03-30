@@ -117,5 +117,9 @@ PRODUCT_FULL_TREBLE_OVERRIDE := true
 # Verified Boot
 BOARD_AVB_ENABLE := true
 
+# Properties
+TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
+BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
+
 # inherit from the proprietary version
 -include vendor/smartisan/ocean/BoardConfigVendor.mk
