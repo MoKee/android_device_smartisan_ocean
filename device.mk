@@ -37,7 +37,10 @@ PRODUCT_CHARACTERISTICS := nosdcard
 
 # Audio
 PRODUCT_PACKAGES += \
-    audio.a2dp.default
+    audio.a2dp.default \
+    libaudio-resampler \
+    libaudioroute \
+    libtinyalsa
 
 # Display
 PRODUCT_PACKAGES += \
@@ -46,6 +49,14 @@ PRODUCT_PACKAGES += \
 # Filesystem
 PRODUCT_PACKAGES += \
     fs_config_files
+
+# Fingerprint
+PRODUCT_PACKAGES += \
+    android.hardware.biometrics.fingerprint@2.1
+
+# Health
+PRODUCT_PACKAGES += \
+    android.hardware.health@1.0
 
 # HIDL
 PRODUCT_PACKAGES += \
@@ -86,6 +97,14 @@ PRODUCT_PACKAGES += \
 PRODUCT_BOOT_JARS += \
     telephony-ext
 
+# Tetheroffload
+PRODUCT_PACKAGES += \
+    android.hardware.tetheroffload.control@1.0
+
+# USB
+PRODUCT_PACKAGES += \
+    android.hardware.usb@1.0
+
 # VNDK
 PRODUCT_PACKAGES += \
     vndk_package
@@ -93,3 +112,8 @@ PRODUCT_PACKAGES += \
 # VNDK-SP
 PRODUCT_PACKAGES += \
     vndk-sp
+
+# Wi-Fi
+PRODUCT_PACKAGES += \
+    android.hardware.wifi@1.0 \
+    android.hardware.wifi@1.1
