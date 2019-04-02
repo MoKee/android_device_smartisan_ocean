@@ -112,7 +112,7 @@ BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/private
 PRODUCT_FULL_TREBLE_OVERRIDE := true
 
 # Verified Boot
-BOARD_AVB_ENABLE := true
+# BOARD_AVB_ENABLE := true
 
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
