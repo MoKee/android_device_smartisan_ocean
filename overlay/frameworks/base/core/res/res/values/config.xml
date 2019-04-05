@@ -45,9 +45,9 @@
          Wifi interfaces.  If the device doesn't want to support tethering over Wifi this
          should be empty.  An example would be "softap.*" -->
     <string-array translatable="false" name="config_tether_wifi_regexs">
-        <item>"wlan0"</item>
-        <item>"wigig0"</item>
         <item>"softap0"</item>
+        <item>"wigig0"</item>
+        <item>"wifi_br0"</item>
     </string-array>
 
     <!-- This string array should be overridden by the device to present a list of network
@@ -110,6 +110,12 @@
 
     <!-- Boolean indicating whether the wifi chipset has background scan support -->
     <bool translatable="false" name="config_wifi_background_scan_support">true</bool>
+
+    <integer translatable="false" name="config_wifi_idle_receive_cur_ma">1</integer>
+    <integer translatable="false" name="config_wifi_active_rx_cur_ma">40</integer>
+    <integer translatable="false" name="config_wifi_tx_cur_ma">50</integer>
+    <integer translatable="false" name="config_wifi_operating_voltage_mv">3300</integer>
+    <integer translatable="false" name="config_bluetooth_operating_voltage_mv">3300</integer>
 
     <!-- If this is true, the screen will come on when you plug/unplug usb/power/whatever. -->
     <bool name="config_unplugTurnsOnScreen">true</bool>
@@ -182,7 +188,7 @@
 
     <string-array name="config_mobile_tcp_buffers">
         <item>"lte:2097152,4194304,8388608,262144,524288,1048576"</item>
-        <item>"lte_ca:2097152,4194304,8388608,4096,1048576,2097152"</item>
+        <item>"lte_ca:4096,6291456,12582912,4096,1048576,2097152"</item>
         <item>"umts:4094,87380,1220608,4096,16384,1220608"</item>
         <item>"hspa:4094,87380,1220608,4096,16384,1220608"</item>
         <item>"hsupa:4094,87380,1220608,4096,16384,1220608"</item>
