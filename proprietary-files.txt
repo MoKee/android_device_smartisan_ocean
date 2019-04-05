@@ -253,7 +253,3 @@ lib64/libqti-util_system.so
 lib64/libsensorslog.so
 lib64/libsnsdiaglog.so
 lib64/libssc.so
-
-# Wi-Fi
-lib64/android.hardware.wifi.supplicant@1.0.so
-lib64/vendor.qti.hardware.wifi.supplicant@1.0.so
