@@ -2,5 +2,9 @@
   {
     "repository": "android_vendor_smartisan_ocean",
     "target_path": "vendor/smartisan/ocean"
+  },
+  {
+    "repository": "android_kernel_smartisan_sdm710",
+    "target_path": "kernel/smartisan/sdm710"
   }
 ]
