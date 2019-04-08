@@ -165,8 +165,8 @@ case "$usb_config" in
 	              "msm8998" | "sdm660" | "apq8098_latv")
 		          setprop persist.sys.usb.config diag,serial_cdev,rmnet,adb
 		      ;;
-	              "sdm845" | "sdm710")
-		          setprop persist.sys.usb.config diag,serial_cdev,rmnet,dpl,adb
+	              "sdm845" | "sdm670")
+		          setprop persist.sys.usb.config diag,serial_cdev,rmnet,adb
 		      ;;
 	              *)
 		          setprop persist.sys.usb.config diag,adb
@@ -363,7 +363,7 @@ if [ -d /config/usb_gadget/g1/functions/uvc.0 ]; then
 	cd /config/usb_gadget/g1/functions/uvc.0
 
 	echo 3072 > streaming_maxpacket
-	echo 5 > streaming_maxburst
+	echo 1 > streaming_maxburst
 	mkdir control/header/h
 	ln -s control/header/h control/class/fs/
 	ln -s control/header/h control/class/ss
