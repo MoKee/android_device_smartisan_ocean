@@ -123,6 +123,7 @@ PRODUCT_PACKAGES += \
     libdisplayconfig \
     libdrm \
     libdrm.vendor \
+    libqdMetaData \
     libqdMetaData.system \
     libtinyxml \
     libvulkan

@@ -218,8 +218,6 @@ lib64/libvendorconn.so
 lib64/vendor.qti.hardware.data.latency@1.0.so
 
 # Display
--vendor/lib/libqdMetaData.so
--vendor/lib64/libqdMetaData.so
 lib/libcalibration_jni.so
 lib/vendor.display.config@1.0.so
 lib/vendor.display.config@1.1.so
