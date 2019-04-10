@@ -150,6 +150,12 @@ on boot
     chown system system /persist/speccfg/submask
     chown system system /persist/speccfg/partition
 
+    # Nav keys
+    chmod 0600 /proc/touchscreen/key_enable
+    chmod 0600 /proc/touchscreen/key_swap
+    chown system system /proc/touchscreen/key_enable
+    chown system system /proc/touchscreen/key_swap
+
 #start camera server as daemon
 #service qcamerasvr /system/bin/mm-qcamera-daemon
 #    class late_start
