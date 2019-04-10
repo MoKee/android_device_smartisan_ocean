@@ -120,18 +120,12 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.mapper@2.0-impl \
     android.hardware.memtrack@1.0-impl \
     android.hardware.memtrack@1.0-service \
-    gralloc.sdm710 \
-    hwcomposer.sdm710 \
-    memtrack.sdm710 \
     libdisplayconfig \
+    libdrm \
     libdrm.vendor \
-    libqdMetaData \
     libqdMetaData.system \
     libtinyxml \
-    libvulkan \
-    vendor.display.config@1.0.vendor \
-    vendor.display.config@1.1.vendor \
-    vendor.display.config@1.2.vendor
+    libvulkan
 
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/display,$(TARGET_COPY_OUT_VENDOR)/etc)
