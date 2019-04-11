@@ -156,6 +156,10 @@ on boot
     chown system system /proc/touchscreen/key_enable
     chown system system /proc/touchscreen/key_swap
 
+    # Flicker-free
+    chmod 0600 /sys/devices/platform/soc/soc\:qcom,dsi-display@0/msm_fb_ea_enable
+    chown system system /sys/devices/platform/soc/soc\:qcom,dsi-display@0/msm_fb_ea_enable
+
 #start camera server as daemon
 #service qcamerasvr /system/bin/mm-qcamera-daemon
 #    class late_start
