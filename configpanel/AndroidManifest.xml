@@ -26,6 +26,15 @@
         android:directBootAware="true">
 
         <activity
+            android:name=".ButtonSettingsActivity"
+            android:label="@string/button_panel_title">
+            <intent-filter>
+                <action android:name="org.mokee.settings.device.ADDITIONAL_BUTTONS_SETTINGS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".FlickerFreeSettingsActivity"
             android:label="@string/flicker_free_settings_title">
             <intent-filter>

@@ -16,20 +16,12 @@
 
 package org.mokee.settings.device;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
+public class ButtonConstants {
 
-public class Startup extends BroadcastReceiver {
+    // Preference keys
+    static final String BUTTON_SWAP_KEY = "button_swap";
 
-    @Override
-    public void onReceive(final Context context, final Intent intent) {
-        final String action = intent.getAction();
-        if (Constants.ACTION_INITIALIZE_MK_HARDWARE.equals(action)) {
-            ButtonSettingsActivity.restoreState(context);
-            FlickerFreeSettingsActivity.restoreState(context);
-            Utils.restoreNodePrefs(context);
-        }
-    }
+    // Button nodes
+    static final String BUTTON_SWAP_NODE = "/proc/touchscreen/key_swap";
 
 }

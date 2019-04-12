@@ -31,15 +31,20 @@ class Constants {
     // Holds <preference_key> -> <default_values> mapping
     static final Map<String, Object> sNodeDefaultMap = new HashMap<>();
 
-    static final String[] sFlickerFreePrefKeys = {
+    static final String[] sPrefKeys = {
+        ButtonConstants.BUTTON_SWAP_KEY,
         FlickerFreeConstants.FLICKER_FREE_KEY,
     };
 
     static {
         sBooleanNodePreferenceMap.put(
+                ButtonConstants.BUTTON_SWAP_KEY,
+                ButtonConstants.BUTTON_SWAP_NODE);
+        sBooleanNodePreferenceMap.put(
                 FlickerFreeConstants.FLICKER_FREE_KEY,
                 FlickerFreeConstants.FLICKER_FREE_NODE);
 
+        sNodeDefaultMap.put(ButtonConstants.BUTTON_SWAP_KEY, false);
         sNodeDefaultMap.put(FlickerFreeConstants.FLICKER_FREE_KEY, false);
     }
 

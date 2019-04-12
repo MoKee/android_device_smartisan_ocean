@@ -60,7 +60,7 @@ class Utils {
 
     static void restoreNodePrefs(Context context) {
         String value, node;
-        for (String pref : Constants.sFlickerFreePrefKeys) {
+        for (String pref : Constants.sPrefKeys) {
             if (Constants.sStringNodePreferenceMap.containsKey(pref)) {
                 value = getPreferenceString(context, pref);
                 node = Constants.sStringNodePreferenceMap.get(pref);

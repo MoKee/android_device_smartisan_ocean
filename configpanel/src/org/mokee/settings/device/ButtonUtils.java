@@ -16,20 +16,12 @@
 
 package org.mokee.settings.device;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
+import org.mokee.internal.util.FileUtils;
 
-public class Startup extends BroadcastReceiver {
+class ButtonUtils {
 
-    @Override
-    public void onReceive(final Context context, final Intent intent) {
-        final String action = intent.getAction();
-        if (Constants.ACTION_INITIALIZE_MK_HARDWARE.equals(action)) {
-            ButtonSettingsActivity.restoreState(context);
-            FlickerFreeSettingsActivity.restoreState(context);
-            Utils.restoreNodePrefs(context);
-        }
+    static boolean isHardwareKeysSupported() {
+        return FileUtils.fileExists(ButtonConstants.BUTTON_SWAP_NODE);
     }
 
 }
