@@ -138,6 +138,10 @@ TARGET_USERIMAGES_USE_F2FS := true
 TARGET_USERIMAGES_SPARSE_EXT_DISABLED := false
 TARGET_USES_MKE2FS := true
 
+# Releasetools
+TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_ocean
+TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
+
 # Root
 BOARD_ROOT_EXTRA_FOLDERS := bt_firmware dsp firmware persist klogdump ramdump
 
