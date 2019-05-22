@@ -6,5 +6,9 @@
   {
     "repository": "android_kernel_smartisan_sdm710",
     "target_path": "kernel/smartisan/sdm710"
+  },
+  {
+    "repository": "android_packages_resources_devicesettings",
+    "target_path": "packages/resources/devicesettings"
   }
 ]
