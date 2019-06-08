@@ -79,11 +79,10 @@ public class KeyHandler implements DeviceKeyHandler {
     }
 
     public KeyEvent handleKeyEvent(KeyEvent event) {
-        if (handleShortcutsKeyEvent(event) || handlePowerKeyEvent(event)) {
-            return null;
-        } else {
-            return event;
-        }
+        boolean handled = false;
+        handled = handleShortcutsKeyEvent(event) || handled;
+        handled = handlePowerKeyEvent(event) || handled;
+        return handled ? null : event;
     }
 
     private boolean handleShortcutsKeyEvent(KeyEvent event) {
