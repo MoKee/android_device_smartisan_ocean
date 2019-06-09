@@ -160,7 +160,7 @@ ENABLE_VENDOR_RIL_SERVICE := true
 VENDOR_SECURITY_PATCH := 2019-01-10
 
 # SELinux
-BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor-minimal
+include device/qcom/sepolicy/sepolicy.mk
 
 # Timeservice
 BOARD_USES_QC_TIME_SERVICES := true
