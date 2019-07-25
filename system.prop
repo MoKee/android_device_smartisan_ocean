@@ -57,8 +57,6 @@ persist.mm.enable.prefetch=true
 #Netflix custom property
 ro.netflix.bsp_rev=Q670-14477-1
 
-#disable remote extractor
-media.stagefright.extractremote=false
 #
 # system props for the data modules
 #
