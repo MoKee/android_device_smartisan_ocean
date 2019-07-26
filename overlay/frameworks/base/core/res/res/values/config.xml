@@ -344,6 +344,25 @@
          that can be set by the user. -->
     <integer name="config_screenBrightnessDoze">50</integer>
 
+    <!-- If true, the display will be shifted around in ambient mode. -->
+    <bool name="config_enableBurnInProtection">true</bool>
+
+    <!-- Specifies the maximum burn-in offset displacement from the center. If -1, no maximum value
+         will be used. -->
+    <integer name="config_burnInProtectionMaxRadius">7</integer>
+
+    <!-- Specifies the minimum burn-in offset horizontally. -->
+    <integer name="config_burnInProtectionMinHorizontalOffset">-6</integer>
+
+    <!-- Specifies the maximum burn-in offset horizontally. -->
+    <integer name="config_burnInProtectionMaxHorizontalOffset">6</integer>
+
+    <!-- Specifies the minimum burn-in offset vertically. -->
+    <integer name="config_burnInProtectionMinVerticalOffset">-4</integer>
+
+    <!-- Specifies the maximum burn-in offset vertically. -->
+    <integer name="config_burnInProtectionMaxVerticalOffset">4</integer>
+
     <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
 
     <!-- Control whether the always on display mode is available. This should only be enabled on
