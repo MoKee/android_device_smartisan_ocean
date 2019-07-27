@@ -249,3 +249,6 @@ persist.radio.enable_temp_dds=1
 
 #enable klogd feature for debugging in user variant
 ro.logd.kernel=true
+
+# Enable HAL3
+persist.camera.HAL3.enabled=1
