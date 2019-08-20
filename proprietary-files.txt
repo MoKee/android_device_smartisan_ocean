@@ -891,13 +891,19 @@ vendor/etc/sensors/config/sns_wrist_pedo.json
 vendor/etc/sensors/config/stk342x_0.json
 vendor/etc/sensors/config/tmd2725.json
 vendor/etc/sensors/hals.conf
+vendor/lib/libSMTSensorCalLibNative.so
 vendor/lib/libsensorcal.so
 vendor/lib/libsensorslog.so
 vendor/lib/libsmartisan_cjson.so
+vendor/lib/libsnsdiaglog.so
+vendor/lib/libssc.so
 vendor/lib/sensors.ssc.so
+vendor/lib64/libSMTSensorCalLibNative.so
 vendor/lib64/libsensorcal.so
 vendor/lib64/libsensorslog.so
 vendor/lib64/libsmartisan_cjson.so
+vendor/lib64/libsnsdiaglog.so
+vendor/lib64/libssc.so
 vendor/lib64/sensors.ssc.so
 
 # Thermal
