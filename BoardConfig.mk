@@ -18,6 +18,9 @@ BOARD_VENDOR := smartisan
 
 DEVICE_PATH := device/smartisan/ocean
 
+# Build
+BUILD_BROKEN_DUP_RULES := true
+
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := sdm710
 TARGET_NO_BOOTLOADER := true
