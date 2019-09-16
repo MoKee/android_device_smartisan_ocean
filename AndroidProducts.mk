@@ -15,4 +15,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/mk_ocean.mk
+    $(LOCAL_DIR)/mokee_ocean.mk
