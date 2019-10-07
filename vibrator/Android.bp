@@ -15,19 +15,23 @@
 // limitations under the License.
 
 cc_binary {
-    name: "android.hardware.vibrator@1.0-service.ocean",
+    name: "android.hardware.vibrator@1.3-service.ocean",
     vendor: true,
     relative_install_path: "hw",
-    init_rc: ["android.hardware.vibrator@1.0-service.ocean.rc"],
-    vintf_fragments: ["android.hardware.vibrator@1.0-service.ocean.xml"],
+    init_rc: ["android.hardware.vibrator@1.3-service.ocean.rc"],
+    vintf_fragments: ["android.hardware.vibrator@1.3-service.ocean.xml"],
     srcs: ["service.cpp", "Vibrator.cpp"],
-    cflags: ["-Wall", "-Werror"],
+    cflags: ["-Wall", "-Werror", "-DSMARTISAN_HACK"],
     shared_libs: [
         "libbase",
         "libhidlbase",
         "libhidltransport",
         "liblog",
         "libutils",
+        "libhardware",
         "android.hardware.vibrator@1.0",
+        "android.hardware.vibrator@1.1",
+        "android.hardware.vibrator@1.2",
+        "android.hardware.vibrator@1.3",
     ],
 }

@@ -14,18 +14,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#define LOG_TAG "android.hardware.vibrator@1.0-service.ocean"
+#define LOG_TAG "android.hardware.vibrator@1.3-service.ocean"
 
 #include <android-base/logging.h>
-#include <android/hardware/vibrator/1.0/IVibrator.h>
+#include <android/hardware/vibrator/1.3/IVibrator.h>
 #include <hidl/HidlTransportSupport.h>
 
 #include "Vibrator.h"
 
 using android::hardware::configureRpcThreadpool;
 using android::hardware::joinRpcThreadpool;
-using android::hardware::vibrator::V1_0::IVibrator;
-using android::hardware::vibrator::V1_0::implementation::Vibrator;
+using android::hardware::vibrator::V1_3::IVibrator;
+using android::hardware::vibrator::V1_3::implementation::Vibrator;
 using namespace android;
 
 const static std::string kVibratorStatePath = "/sys/class/leds/vibrator/state";
@@ -33,6 +33,22 @@ const static std::string kVibratorDurationPath = "/sys/class/leds/vibrator/durat
 const static std::string kVibratorActivatePath = "/sys/class/leds/vibrator/activate";
 
 status_t registerVibratorService() {
+    vibrator_device_t *vib_device;
+    const hw_module_t *hw_module = nullptr;
+
+    int ret = hw_get_module(VIBRATOR_HARDWARE_MODULE_ID, &hw_module);
+    if (ret == 0) {
+        ret = vibrator_open(hw_module, &vib_device);
+        if (ret != 0) {
+            LOG(ERROR) << "vibrator_open failed: " << ret;
+            return ret;
+        }
+    } else {
+        LOG(ERROR) << "hw_get_module " << VIBRATOR_HARDWARE_MODULE_ID
+                   << " failed: " << ret;
+        return ret;
+    }
+
     std::ofstream vibratorState(kVibratorStatePath);
     if (!vibratorState) {
         LOG(ERROR) << "Failed to open " << kVibratorStatePath << ", error=" << errno
@@ -52,6 +68,7 @@ status_t registerVibratorService() {
     }
 
     sp<IVibrator> vibrator = new Vibrator(
+            vib_device,
             std::move(vibratorState),
             std::move(vibratorDuration),
             std::move(vibratorActivate));
