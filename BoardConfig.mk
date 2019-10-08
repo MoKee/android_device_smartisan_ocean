@@ -20,6 +20,7 @@ DEVICE_PATH := device/smartisan/ocean
 
 # Build
 BUILD_BROKEN_DUP_RULES := true
+PRODUCT_SOONG_NAMESPACES += $(DEVICE_PATH)
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := sdm710
