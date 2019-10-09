@@ -147,7 +147,7 @@ TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_ocean
 TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
 
 # Root
-BOARD_ROOT_EXTRA_FOLDERS := persist klogdump
+BOARD_ROOT_EXTRA_FOLDERS := persist
 
 # RenderScript
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so

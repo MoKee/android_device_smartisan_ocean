@@ -7,7 +7,6 @@
 
 #<src>                                                 <mnt_point>        <type>  <mnt_flags and options>                            <fs_mgr_flags>
 /dev/block/logic_data                                   /data              ext4    nosuid,noatime,nodev,nobarrier,noauto_da_alloc,discard,lazytime       wait,check,encryptable=footer,quota,formattable
-/dev/block/bootdevice/by-name/klogdump                  /klogdump          ext4    noatime,nosuid,nodev,barrier=1,noauto_da_alloc,discard       wait,check,formattable
 /dev/block/bootdevice/by-name/cache                     /cache             ext4    nosuid,noatime,nodev,barrier=1                               wait
 /dev/block/bootdevice/by-name/modem                     /vendor/firmware_mnt     vfat    ro,shortname=lower,uid=0,gid=1000,dmask=227,fmask=337        wait
 /dev/block/bootdevice/by-name/dsp                       /vendor/dsp              ext4    ro,nosuid,nodev,barrier=1                                    wait
