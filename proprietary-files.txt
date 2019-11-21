@@ -906,11 +906,7 @@ vendor/lib64/libthermalclient.so
 vendor/bin/time_daemon
 
 # Vibrator
-vendor/bin/hw/android.hardware.vibrator@1.0-service
-vendor/etc/init/android.hardware.vibrator@1.0-service.rc
-vendor/lib/hw/android.hardware.vibrator@1.0-impl.so
 vendor/lib/hw/vibrator.default.so:vendor/lib/hw/vibrator.sdm710.so
-vendor/lib64/hw/android.hardware.vibrator@1.0-impl.so
 vendor/lib64/hw/vibrator.default.so:vendor/lib64/hw/vibrator.sdm710.so
 
 # Wi-Fi

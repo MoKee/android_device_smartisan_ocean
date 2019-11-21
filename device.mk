@@ -311,6 +311,10 @@ PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service \
     com.android.future.usb.accessory
 
+# Vibrator
+PRODUCT_PACKAGES += \
+    android.hardware.vibrator@1.0-service.ocean
+
 # VNDK
 PRODUCT_PACKAGES += \
     vndk_package
