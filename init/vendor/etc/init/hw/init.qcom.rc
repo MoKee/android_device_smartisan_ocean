@@ -373,10 +373,6 @@ on post-fs-data
     chmod 2770 /data/vendor/perfd
     rm /data/vendor/perfd/default_values
 
-    # NFC local data and nfcee xml storage
-    mkdir /data/nfc 0770 nfc nfc
-    mkdir /data/nfc/param 0770 nfc nfc
-
     #Create IOP  deamon related dirs
     mkdir /data/vendor/iop 0700 root system
 
@@ -418,12 +414,6 @@ on post-fs-data
 
     #Create FTM_AP dir for factory test
     mkdir /data/FTM_AP 0775 system system
-
-service nqnfcinfo /system/vendor/bin/nqnfcinfo
-    class late_start
-    group nfc
-    user system
-    oneshot
 
 service iop /system/vendor/bin/iop
     class main

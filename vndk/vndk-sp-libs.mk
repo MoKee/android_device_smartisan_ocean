@@ -48,7 +48,6 @@ EXTRA_VENDOR_LIBRARIES := \
     vendor.mokee.livedisplay@2.0 \
     vendor.mokee.power@1.0 \
     vendor.mokee.trust@1.0 \
-    vendor.nxp.hardware.nfc@1.0 \
     vendor.qti.hardware.camera.device@1.0 \
     vendor.qti.hardware.data.dynamicdds@1.0 \
     vendor.qti.hardware.data.latency@1.0 \
