@@ -96,6 +96,7 @@ PRODUCT_PACKAGES += \
     audio.usb.default \
     libaudio-resampler \
     libaudioroute \
+    libdynproc \
     libtinyalsa \
     libqcompostprocbundle \
     libqcomvisualizer \
