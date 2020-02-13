@@ -273,6 +273,7 @@ vendor/etc/camera/megvii/model
 vendor/firmware/CAMERA_ICP.elf
 
 # Charger
+sbin/charger:bin/smartisan_charger
 vendor/bin/hvdcp_opti
 
 # Display

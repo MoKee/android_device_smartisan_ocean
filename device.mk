@@ -125,6 +125,10 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service
 
+# Charger
+PRODUCT_COPY_FILES += \
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/charger,root/res/images/charger)
+
 # Config panel
 PRODUCT_PACKAGES += \
     ConfigPanel
